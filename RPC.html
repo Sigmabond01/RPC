@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPC</title>
+</head>
+<body>
+    <h1>Welcome to RPC</h1>
+    <script>
+    let humanScore = 0;
+    let computerScore = 0;
+
+    console.log("Welcome");
+
+    function getComputerChoice() {
+        let computerChoice = Math.floor(Math.random() * 3);
+
+        switch (computerChoice) {
+            case 0:
+                return 'Rock';
+            case 1: 
+                return 'Paper';
+            case 2: 
+                return 'Scissors';
+        } 
+    }
+
+    function getHumanChoice() {
+        let humanChoice = prompt("Rock, Paper or Scissors?");
+        return humanChoice;
+    }
+
+    function playRound() {
+        const humanChoice = getHumanChoice();
+        const computerChoice = getComputerChoice();
+        
+        console.log(`You chose: ${humanChoice}`);
+        console.log(`Computer chose: ${computerChoice}`);
+
+        if (humanChoice.toLowerCase() === 'rock') {
+            switch (computerChoice.toLowerCase()) {
+                case 'rock':
+                    return console.log(`It's a tie!`);
+                case 'paper':
+                    console.log(`You lose! Paper beats Rock`);
+                    return computerScore++;
+                case 'scissors':
+                    console.log(`You won! Rock beats Scissors`);
+                    return humanScore++;
+            }
+        } else if (humanChoice.toLowerCase() === 'paper') {
+            switch (computerChoice.toLowerCase()) {
+                case 'paper':
+                    return console.log(`It's a tie!`);
+                case 'rock':
+                    console.log(`You won! Paper beats Rock`);
+                    return humanScore++;
+                case 'scissors':
+                    console.log(`You lose! Scissors beats Paper`);
+                    return computerScore++; 
+            }
+        } else if (humanChoice.toLowerCase() === 'scissors') {
+            switch (computerChoice.toLowerCase()) {
+                case 'scissors':
+                    return console.log(`It's a tie!`);
+                case 'paper':
+                    console.log(`You won! Scissors beats Paper`);
+                    return humanScore++;
+                case 'rock':
+                    console.log(`You lose! Rock beats Scissors`);
+                    return computerScore++;
+            }
+        } else {
+            console.log('Wrong input');
+        }
+    }
+
+    function playGame() {
+        for (let round = 1; round <= 5; round++) {
+            console.log(`Round: ${round}`);
+            playRound();
+        }
+
+        if (humanScore > computerScore) {
+            console.log(`End of Game! You: ${humanScore} vs Computer: ${computerScore}`);
+            console.log(`You Won!!`);
+        } else {
+            console.log(`End of Game! Computer: ${computerScore} vs You: ${humanScore}`);
+            console.log(`Computer Won!!`);
+        }
+    }
+
+    console.log(`Welcome to Rock Paper Scissors!`);
+    playGame();
+    </script>
+</body>
+</html>
